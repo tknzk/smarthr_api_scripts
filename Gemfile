@@ -9,5 +9,6 @@ gem 'rest-client'
 gem 'thor'
 
 group :development do
+  gem 'pry'
   gem 'rubocop'
 end
