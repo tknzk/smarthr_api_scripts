@@ -27,19 +27,17 @@ SMARTHR_API_TOKEN=API TOKEN を設定
 bundle exec smarthr-api-cli
 
 Commands:
-  smarthr-api-cli crew            # Crew samples
+  smarthr-api-cli crew            # Crew clis
   smarthr-api-cli help [COMMAND]  # Describe available commands or one specific command
 ```
 
 ## crew
 ```
-bundle exec smarthr-api-cli crew --help
-
+bundle exec smarthr-api-cli help crew
 Commands:
-  smarthr-api-cli crew bulk update crew.emp_code from csv  # bulk_update_emp_code CSV_PATH
-  smarthr-api-cli crew dump to csv                         # dump
-  smarthr-api-cli crew help [COMMAND]                      # Describe subcommands or one specific subcommand
-
+  smarthr-api-cli crew bulk_update_emp_code CSV_PATH  # bulk update crew.emp_code from csv
+  smarthr-api-cli crew dump                           # dump to csv
+  smarthr-api-cli crew help [COMMAND]                 # Describe subcommands or one specific subcommand
 ```
 
 ### dump csv
