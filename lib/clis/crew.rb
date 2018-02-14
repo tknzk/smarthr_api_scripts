@@ -4,10 +4,10 @@ require 'rest-client'
 
 require 'base_cli'
 
-module Samples
+module Clis
 
   class Crew < BaseCli
-    desc 'dump to csv', 'dump'
+    desc 'dump', 'dump to csv'
     def dump
       results = []
 
@@ -41,11 +41,11 @@ module Samples
       end
     end
 
-    desc 'bulk update crew.emp_code from csv', 'bulk_update_emp_code CSV_PATH'
+    desc 'bulk_update_emp_code CSV_PATH', 'bulk update crew.emp_code from csv'
     def bulk_update_emp_code(csv_path)
-      url = "https://#{ENV['SMARTHR_SUBDOMAIN']}.smarthr.jp/api/v1/crews"
+      url = "https://#{subdomain}.smarthr.jp/api/v1/crews"
       headers = {
-        Authorization: "Bearer #{ENV['SMARTHR_API_TOKEN']}",
+        Authorization: "Bearer #{ENV['SMARTHR_API_TOKEN']}"
       }
 
       CSV.foreach(csv_path, headers: true) do |csv|

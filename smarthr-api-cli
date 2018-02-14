@@ -14,14 +14,14 @@ require 'dotenv/load'
 #
 class App < Thor
 
-  # Load all the samples and register them as subcommands
-  Dir.glob('./lib/samples/*.rb').each do |file|
+  # Load all the clis and register them as subcommands
+  Dir.glob('./lib/clis/*.rb').each do |file|
     require file
   end
 
-  Samples.constants.each do |const|
-    desc const.downcase, "#{const} samples"
-    subcommand const.downcase, Samples.const_get(const)
+  Clis.constants.each do |const|
+    desc const.downcase, "#{const} clis"
+    subcommand const.downcase, Clis.const_get(const)
   end
 
 end
