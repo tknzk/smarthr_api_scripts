@@ -1,0 +1,3 @@
+security_updates: true
+bundle_updates: true
+base_branch: master
