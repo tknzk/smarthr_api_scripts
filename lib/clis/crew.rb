@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'json'
 require 'rest-client'
@@ -5,7 +7,9 @@ require 'rest-client'
 require 'base_cli'
 
 module Clis
-
+  #
+  # Clis::Crew
+  #
   class Crew < BaseCli
     desc 'dump', 'dump to csv'
     def dump
@@ -22,10 +26,9 @@ module Clis
 
       x_total_count = client.headers[:x_total_count]
       max_page = (x_total_count.to_f / per_page).ceil
-      max_page = 2
 
       if max_page > 1
-        for page in 2..max_page do
+        2..max_page.each do |page|
           url = "https://#{ENV['SMARTHR_SUBDOMAIN']}.smarthr.jp/api/v1/crews?per_page=#{per_page}&page=#{page}"
           client = RestClient.get(url, headers)
           results.concat(id_emp_code(JSON.parse(client.body)))
@@ -34,7 +37,7 @@ module Clis
 
       # write csv
       CSV.open('dump.csv', 'w') do |csv|
-        csv << %w(id old_emp_code new_emp_code name)
+        csv << %w[id old_emp_code new_emp_code name]
         results.each do |val|
           csv << [val[:id], val[:emp_code], '', val[:name]]
         end
@@ -50,7 +53,7 @@ module Clis
 
       CSV.foreach(csv_path, headers: true) do |csv|
         id = csv[0]
-        old_emp_code = csv[1]
+        _old_emp_code = csv[1]
         new_emp_code = csv[2]
         endpoint = "#{url}/#{id}"
         payload = {
@@ -58,13 +61,14 @@ module Clis
         }
         begin
           RestClient.patch(endpoint, payload, headers)
-        rescue => e
+        rescue StandardError => e
           puts e.message
         end
       end
     end
 
     private
+
     def id_emp_code(response)
       result = []
       response.each do |val|
@@ -77,7 +81,5 @@ module Clis
       end
       result
     end
-
   end
-
 end

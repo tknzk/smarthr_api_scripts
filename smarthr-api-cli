@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-$:.unshift(File.expand_path("../lib", __FILE__))
+$LOAD_PATH.unshift(File.expand_path('lib', __dir__))
 
 require 'thor'
 require 'dotenv/load'
-
 
 #
 # Example usage:
@@ -13,7 +13,6 @@ require 'dotenv/load'
 #
 #
 class App < Thor
-
   # Load all the clis and register them as subcommands
   Dir.glob('./lib/clis/*.rb').each do |file|
     require file
@@ -23,7 +22,6 @@ class App < Thor
     desc const.downcase, "#{const} clis"
     subcommand const.downcase, Clis.const_get(const)
   end
-
 end
 
 Dotenv.load
