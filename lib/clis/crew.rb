@@ -7,7 +7,6 @@ require 'rest-client'
 require 'base_cli'
 
 module Clis
-
   #
   # Clis::Crew
   #
