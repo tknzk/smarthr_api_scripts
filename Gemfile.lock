@@ -34,6 +34,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.6)
+    rubocop-performance (1.1.0)
+      rubocop (>= 0.67.0)
     ruby-progressbar (1.10.0)
     thor (0.20.3)
     unf (0.1.4)
@@ -49,10 +51,11 @@ DEPENDENCIES
   pry
   rest-client
   rubocop
+  rubocop-performance
   thor
 
 RUBY VERSION
-   ruby 2.6.2p47
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
